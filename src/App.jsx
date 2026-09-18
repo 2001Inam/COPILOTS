@@ -2,24 +2,28 @@ import { useState } from 'react'
 
 const simulators = {
   customer: {
-    title: 'Customer Conversation Simulator',
-    label: 'Customer Support',
-    description: 'Practice confident, empathetic conversations in realistic support scenarios.',
+    title: 'Customer Conversation Lab',
+    label: 'Scenario practice',
+    description:
+      'Build confidence through realistic support conversations, one response at a time.',
     icon: '💬',
+    accent: 'blue',
     url: 'https://copilotstudio.microsoft.com/environments/Default-b4c546a4-7dac-46a6-a7dd-ed822a11efd3/bots/crbac_test0_Nex4PA/webchat?__version__=2&enableFileAttachment=false&cliAgent=true',
   },
   quiz: {
-    title: 'Support Knowledge Quiz',
-    label: 'Knowledge Check',
-    description: 'Strengthen product knowledge and prepare for customer-facing work.',
-    icon: '✓',
+    title: 'Knowledge Sprint',
+    label: 'Knowledge check',
+    description:
+      'Turn product knowledge into customer-ready confidence with quick challenges.',
+    icon: '✦',
+    accent: 'purple',
     url: 'https://copilotstudio.microsoft.com/environments/Default-b4c546a4-7dac-46a6-a7dd-ed822a11efd3/bots/crbac_quiz2_ROm8X/webchat?__version__=2&enableFileAttachment=false&cliAgent=true',
   },
 }
 
 function MicrosoftMark() {
   return (
-    <span className="microsoft-mark" aria-label="Microsoft-style mark">
+    <span className="microsoft-mark" aria-hidden="true">
       <i />
       <i />
       <i />
@@ -41,24 +45,38 @@ function App() {
             <MicrosoftMark />
             <span>
               <strong>Support Academy</strong>
-              <small>Customer experience training</small>
+              <small>Learn with confidence</small>
             </span>
           </button>
-          <span className="secure-badge">Training environment</span>
+
+          <span className="status-pill">
+            <span className="status-dot" />
+            Practice mode
+          </span>
         </header>
 
         <main className="simulator-page">
           <button className="back-button" onClick={() => setActiveSimulator(null)}>
-            ← Back to learning hub
+            ← Back to your learning hub
           </button>
 
-          <div className="simulator-heading">
+          <section className="simulator-intro">
             <span className="eyebrow">{simulator.label}</span>
+            <div className={`simulator-icon ${simulator.accent}`}>
+              {simulator.icon}
+            </div>
             <h1>{simulator.title}</h1>
             <p>{simulator.description}</p>
-          </div>
+          </section>
 
           <section className="simulator-frame">
+            <div className="frame-topbar">
+              <span className="frame-dot red" />
+              <span className="frame-dot yellow" />
+              <span className="frame-dot green" />
+              <span>Support Academy workspace</span>
+            </div>
+
             <iframe title={simulator.title} src={simulator.url} />
           </section>
         </main>
@@ -73,83 +91,134 @@ function App() {
           <MicrosoftMark />
           <span>
             <strong>Support Academy</strong>
-            <small>Customer experience training</small>
+            <small>Learn with confidence</small>
           </span>
         </div>
-        <span className="secure-badge">Training environment</span>
+
+        <div className="topbar-right">
+          <span className="office-pill">Freshers onboarding</span>
+          <div className="avatar">SA</div>
+        </div>
       </header>
 
       <main>
         <section className="hero">
+          <div className="hero-glow glow-one" />
+          <div className="hero-glow glow-two" />
+
           <div className="hero-copy">
-            <span className="eyebrow">Learning hub</span>
-            <h1>Build customer support confidence.</h1>
+            <span className="eyebrow light">Customer support training</span>
+            <h1>
+              Learn the skills.
+              <span> Love the progress.</span>
+            </h1>
             <p>
-              Practical training for new support professionals—designed to
-              strengthen communication, knowledge, and customer focus.
+              A calm, practical space for new support professionals to build
+              confidence before their first real customer conversation.
             </p>
 
-            <div className="hero-points">
-              <span>✓ Practice safely</span>
-              <span>✓ Learn by doing</span>
-              <span>✓ Build confidence</span>
+            <div className="hero-actions">
+              <button
+                className="primary-button"
+                onClick={() => setActiveSimulator('customer')}
+              >
+                Start practicing <span>→</span>
+              </button>
+
+              <span className="tiny-note">
+                <span>✦</span> Two learning modules ready
+              </span>
             </div>
           </div>
 
-          <div className="hero-panel">
-            <span className="panel-label">Your learning journey</span>
-            <div className="progress-line">
+          <aside className="hero-card">
+            <div className="hero-card-top">
+              <span>Today’s momentum</span>
+              <span className="sparkle">✦</span>
+            </div>
+
+            <div className="circle-progress">
+              <strong>01</strong>
+              <span>of 02</span>
+            </div>
+
+            <h2>You’re ready to grow.</h2>
+            <p>Start small. Practice often. Show up confidently.</p>
+
+            <div className="mini-progress">
               <span />
             </div>
-            <div className="progress-row">
-              <strong>Ready to begin</strong>
-              <span>2 learning modules</span>
-            </div>
-          </div>
+          </aside>
         </section>
 
         <section className="learning-section">
           <div className="section-heading">
             <div>
-              <span className="eyebrow">Choose a module</span>
-              <h2>Start your training</h2>
+              <span className="eyebrow">Your training path</span>
+              <h2>Pick your next win.</h2>
             </div>
-            <p>Select a simulator to begin.</p>
+            <p>Short, focused practice with real-world impact.</p>
           </div>
 
           <div className="simulator-grid">
-            <article className="learning-card">
-              <div className="card-icon chat-icon">💬</div>
-              <span className="card-tag">Scenario practice</span>
+            <article className="learning-card customer-card">
+              <div className="card-orb">💬</div>
+              <span className="card-label">Module 01 · Scenario practice</span>
               <h3>Customer Simulator</h3>
               <p>
-                Respond to realistic customer conversations and practice
-                professional support skills.
+                Practice empathy, clarity, and confident responses through
+                realistic customer-support conversations.
               </p>
+
+              <div className="skill-tags">
+                <span>Communication</span>
+                <span>Empathy</span>
+                <span>Problem solving</span>
+              </div>
+
               <button onClick={() => setActiveSimulator('customer')}>
-                Start customer practice <span>→</span>
+                Open conversation lab <span>→</span>
               </button>
             </article>
 
-            <article className="learning-card">
-              <div className="card-icon quiz-icon">✓</div>
-              <span className="card-tag">Knowledge check</span>
+            <article className="learning-card quiz-card">
+              <div className="card-orb">✦</div>
+              <span className="card-label">Module 02 · Knowledge check</span>
               <h3>Quiz Simulator</h3>
               <p>
-                Test what you know, identify gaps, and reinforce essential
-                customer-support knowledge.
+                Reinforce product knowledge with quick questions that make
+                learning feel focused, useful, and rewarding.
               </p>
+
+              <div className="skill-tags">
+                <span>Product knowledge</span>
+                <span>Confidence</span>
+                <span>Growth</span>
+              </div>
+
               <button onClick={() => setActiveSimulator('quiz')}>
-                Start knowledge quiz <span>→</span>
+                Start knowledge sprint <span>→</span>
               </button>
             </article>
           </div>
         </section>
+
+        <section className="promise-strip">
+          <span className="promise-icon">✦</span>
+          <p>
+            Every great support experience starts with a confident first
+            conversation.
+          </p>
+          <span className="promise-icon">✦</span>
+        </section>
       </main>
 
       <footer>
-        <span>Support Academy</span>
-        <span>Independent training environment</span>
+        <div>
+          <strong>Support Academy</strong>
+          <span>Independent customer-support training environment</span>
+        </div>
+        <span>Practice · Progress · Perform</span>
       </footer>
     </div>
   )
